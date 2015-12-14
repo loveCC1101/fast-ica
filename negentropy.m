@@ -1,7 +1,7 @@
 % Oswaldo Fratini Filho
 % ICA study
-% 
-% Function to calculate the approximation of negentropy
+%
+% Fuction to calculate the approximation of negentropy
 %
 function w = negentropy(x, w)
   tmp1 = zeros(size(x));

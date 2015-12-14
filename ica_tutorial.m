@@ -1,16 +1,18 @@
-% Oswaldo Fratini Filho
+% Aluno: Oswaldo Fratini Filho
 % ICA study
-% Article: Independent Component Analysis: A Tutorial
-% Autor: Aapo Hyvrinen and Erkki Oja
 
 clear all
 close all
+format long
+
+% Number of points
+N = 100;
 
 % Create source 1 with uniform distribution
-s1 = -1 + 2 * rand(100, 1)';
+s1 = -1 + 2 * rand(N, 1)';
 
 % Create source 2 with uniform distribution
-s2 = -1 + 2 * rand(100, 1)';
+s2 = -1 + 2 * rand(N, 1)';
 
 t = [1:1:size(s2, 2)];
 
@@ -81,7 +83,7 @@ W = fastica(xhat)
 tmp1 = W(:,1)'*xhat;
 tmp2 = W(:,2)'*xhat;
 
-% Normalized signals divided by standard deviation 
+% Normalized signals divided by maximium value
 % Signals potency divided by standard deviation are equal 1 becouse signal
 % means equal 0. It isn't true if signals mean is diferent zero.
 s1n = s1/std(s1);
@@ -98,10 +100,7 @@ tmp2ne = sum(abs(tmp2n).^2);
 disp(fprintf('Normalized Source 1 Energy = %f', s1ne));
 disp(fprintf('Normalized Source 2 Energy = %f', s2ne));
 disp(fprintf('Estimated and Normalized Source 1 Energy = %f', tmp1ne));
-disp(fprintf('Estimated and Normalized Source 2 Energy = %f', tmp2ne));
-
-W(:,1)' * wm * A / norm(W(:,1)' * wm * A)
-W(:,2)' * wm * A / norm(W(:,2)' * wm * A)
+disp(fprintf('Estimated and Normalized Source 2 Energy = %f', tmp2ne)); 
 
 if abs(s1ne - tmp1ne) < abs(s1ne - tmp2ne)
     se1n = tmp1n;
@@ -128,3 +127,13 @@ plot(t, s2n, '-b');
 title('Seventh step - Estimeted and Normalized Source')
 xlabel('t');
 ylabel('Normalized S2');
+
+% Mean square error
+
+err1 = sum((tmp1n-s1n).^2)/440000
+err2 = sum((tmp2n-s1n).^2)/440000
+err3 = sum((tmp1n-s2n).^2)/440000
+err4 = sum((tmp2n-s2n).^2)/440000
+
+
+
