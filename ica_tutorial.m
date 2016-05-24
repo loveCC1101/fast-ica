@@ -6,7 +6,7 @@ close all
 format long
 
 % Number of points
-N = 100;
+N = 128;
 
 % Create source 1 with uniform distribution
 s1 = -1 + 2 * rand(N, 1)';
@@ -130,10 +130,9 @@ ylabel('Normalized S2');
 
 % Mean square error
 
-err1 = sum((tmp1n-s1n).^2)/440000
-err2 = sum((tmp2n-s1n).^2)/440000
-err3 = sum((tmp1n-s2n).^2)/440000
-err4 = sum((tmp2n-s2n).^2)/440000
-
+err1 = sum((tmp1n-s1n).^2)/N
+err2 = sum((tmp2n-s1n).^2)/N
+err3 = sum((tmp1n-s2n).^2)/N
+err4 = sum((tmp2n-s2n).^2)/N 
 
 
